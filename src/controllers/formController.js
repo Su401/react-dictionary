@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function FormController({ onSearch, defaultWord }) {
+export default function FormController({ defaultWord, onSearch }) {
 	let [keyword, setKeyword] = useState(defaultWord);
-
-	useEffect(
-		() => {
-			let apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
-			let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
-			axios.get(apiUrl).then(handleResponse);
-		},
-		{ keyword }
-	);
 
 	function handleResponse(res) {
 		onSearch(res.data);
 	}
+
+	useState(
+		() => {
+			let apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
+			let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${defaultWord}&key=${apiKey}`;
+			axios.get(apiUrl).then(handleResponse);
+		},
+		{ defaultWord }
+	);
 
 	function search(event) {
 		event.preventDefault();

@@ -7,7 +7,7 @@ export default function Dictionary() {
 
 	return (
 		<div className='Dictionary'>
-			<FormController onSearch={setResults} defaultWord='shenanigans' />
+			<FormController defaultWord='shenanigans' onSearch={setResults} />
 			<ResultsController results={results} />
 		</div>
 	);
