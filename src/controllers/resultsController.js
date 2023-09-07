@@ -8,7 +8,7 @@ export default function ResultsController(props) {
 		return (
 			<div className='ResultsController'>
 				<h2>{props.results.word}</h2>
-				{props.results.meanings.map((meaning, index) => {
+				{props.results.meanings.map(function (meaning, index) {
 					return (
 						<div key={index}>
 							<Meanings meaning={meaning} />

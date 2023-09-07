@@ -1,37 +1,27 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
-
 export default function FormController({ onSearch, defaultWord }) {
-	const [keyword, setKeyword] = useState(defaultWord);
+	let [keyword, setKeyword] = useState(defaultWord);
 
-	const handleResponse = useCallback(
-		(res) => {
-			onSearch(res.data);
+	useEffect(
+		() => {
+			let apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
+			let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
+			axios.get(apiUrl).then(handleResponse);
 		},
-		[onSearch]
+		{ keyword }
 	);
 
-	const handleError = useCallback((error) => {
-		// Handle API errors here, e.g., display an error message to the user.
-		console.error('API error:', error);
-	}, []);
-
-	useEffect(() => {
-		if (keyword) {
-			const apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
-			axios.get(apiUrl).then(handleResponse).catch(handleError);
-		}
-	}, [keyword, handleResponse, handleError]);
+	function handleResponse(res) {
+		onSearch(res.data);
+	}
 
 	function search(event) {
 		event.preventDefault();
-		// Perform a search only if the keyword is not empty.
-		if (keyword) {
-			const apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
-			axios.get(apiUrl).then(handleResponse).catch(handleError);
-		}
+		let apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
+		let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
+		axios.get(apiUrl).then(handleResponse);
 	}
 
 	function handleKeyword(event) {
@@ -45,9 +35,8 @@ export default function FormController({ onSearch, defaultWord }) {
 					type='search'
 					placeholder='Search for a word...'
 					onChange={handleKeyword}
-					autoFocus={true}
 				/>
-				<input type='submit' value='Search' />
+				<input type='submit' value='Search' autoFocus={true} />
 			</form>
 		</div>
 	);
