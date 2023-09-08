@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function FormController({ defaultWord, onSearch }) {
+export default function Form({ defaultWord, onSearch }) {
 	let [keyword, setKeyword] = useState(defaultWord);
 
 	function handleResponse(res) {
@@ -29,7 +29,7 @@ export default function FormController({ defaultWord, onSearch }) {
 	}
 
 	return (
-		<div className='FormController'>
+		<div className='Form'>
 			<form onSubmit={search}>
 				<input
 					type='search'

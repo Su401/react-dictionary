@@ -1,12 +1,12 @@
 import React from 'react';
-import Meanings from './meaningController';
+import Meanings from './meaning';
 
-export default function ResultsController(props) {
+export default function Results(props) {
 	console.log(props.results);
 
 	if (props.results) {
 		return (
-			<div className='ResultsController'>
+			<div className='Results'>
 				<h2>{props.results.word}</h2>
 				{props.results.meanings.map(function (meaning, index) {
 					return (
