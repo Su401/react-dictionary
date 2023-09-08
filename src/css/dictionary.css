@@ -1,0 +1,14 @@
+.Dictionary {
+    width: 90%;
+    margin: auto;
+    padding-top: 2.5rem;
+    color: rgb(234, 234, 234);
+    text-align: justify;
+}
+
+.container {
+    background-color: rgb(60, 64, 72);
+    padding-top: 1rem;
+    padding-bottom: 0.1rem;
+    border-radius: 0.75rem;
+}
