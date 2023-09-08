@@ -1,4 +1,4 @@
-h1 {
+.Results h1 {
     font-size: 3em;
     font-weight: 700;
     margin: 0;
@@ -7,7 +7,7 @@ h1 {
     overflow-wrap: break-word;
 }
 
-h2 {
+.Results h2 {
     font-size: 1.5em;
     font-weight: 700;
     margin: 0;
@@ -16,7 +16,7 @@ h2 {
     overflow-wrap: break-word;
 }
 
-hr {
+.Results hr {
     border: 1px solid rgb(0, 171, 179);
     width: 100%;
 }

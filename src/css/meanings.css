@@ -1,0 +1,19 @@
+.Meanings {
+    margin-bottom: 1rem;
+}
+
+
+.Meanings h3 {
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.Meanings .definition {
+    margin-bottom: 0;
+}
+
+
+.Meanings p>small {
+    font-size: 0.7rem;
+    margin-bottom: 2rem;
+}

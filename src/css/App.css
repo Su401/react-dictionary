@@ -4,14 +4,14 @@
     min-height: 100vh;
 }
 
-footer {
+.App footer {
     font-size: 0.75rem;
     color: rgb(60, 64, 72);
     text-align: center;
 
 }
 
-a {
+.App a {
     text-decoration: none;
     color: rgb(0, 171, 179);
 }

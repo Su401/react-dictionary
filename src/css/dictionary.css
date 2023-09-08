@@ -6,9 +6,8 @@
     text-align: justify;
 }
 
-.container {
+.Dictionary .container {
     background-color: rgb(60, 64, 72);
     padding-top: 1rem;
-    padding-bottom: 0.1rem;
     border-radius: 0.75rem;
 }

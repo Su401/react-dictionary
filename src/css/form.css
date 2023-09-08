@@ -1,13 +1,13 @@
-.btn-outline-secondary {
+.Form .btn-outline-secondary {
     background-color: rgb(0, 171, 179, 0.75);
     color: rgb(234, 234, 234);
 }
 
-.btn-outline-secondary:hover {
+.Form .btn-outline-secondary:hover {
     background-color: rgb(0, 171, 179);
     color: rgb(234, 234, 234);
 }
 
-::placeholder {
+.Form ::placeholder {
     color: rgb(234, 234, 234);
 }
