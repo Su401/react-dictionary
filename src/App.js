@@ -1,13 +1,10 @@
-import './App.css';
+import './css/App.css';
 import Dictionary from './Dictionary';
 
 export default function App() {
 	return (
 		<div className='App'>
 			<div className='container-fluid'>
-				<header className='App-header'>
-					<h1>Hello World!</h1>
-				</header>
 				<Dictionary />
 				<footer>
 					<small>
