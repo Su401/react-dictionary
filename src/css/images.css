@@ -1,0 +1,25 @@
+.Images {
+    display: flex;
+    overflow-x: hidden;
+    margin: 10px 0;
+}
+
+.Images img {
+    border-radius: 0.75rem;
+    width: 100%;
+    max-height: 15rem;
+    margin-top: 8px;
+    vertical-align: middle;
+}
+
+.Images .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+}
+
+.Images .col-4 {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+}
