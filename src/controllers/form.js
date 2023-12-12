@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/form.css';
 
+const apiKey = process.env.REACT_APP_API_KEY;
+const pexelsKey = process.env.REACT_APP_PEXELS_KEY;
 export default function Form({ defaultWord, onSearch, onQuery }) {
 	let [keyword, setKeyword] = useState(defaultWord);
-	let apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
-	let pexelsKey = 'z6DCVBafORQ0Apsrh7qOwheZHJDt7MZZZ4I7XbHpKtfqHibE2ouZgTOb';
 
 	function handleResponse(res) {
 		onSearch(res.data);
@@ -52,12 +52,12 @@ export default function Form({ defaultWord, onSearch, onQuery }) {
 					type='search'
 					placeholder='Search for a word...'
 					onChange={handleKeyword}
-					class='btn btn-secondary col-8'
+					className='btn btn-secondary col-8'
 				/>
 				<input
 					type='submit'
 					value='Search'
-					class='btn btn-outline-secondary col-4'
+					className='btn btn-outline-secondary col-4'
 				/>
 			</form>
 		</div>
