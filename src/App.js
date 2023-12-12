@@ -17,7 +17,7 @@ export default function App() {
 							GitHub
 						</a>{' '}
 						and hosted on{' '}
-						<a href='https://react-dictionari.netlify.app/'>
+						<a href='https://app.netlify.com/teams/su401/overview'>
 							Netlify
 						</a>
 						.
