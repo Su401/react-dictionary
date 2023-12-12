@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import '../css/form.css';
 
@@ -12,6 +12,19 @@ export default function Form({
 	setWordExists,
 }) {
 	const [keyword, setKeyword] = useState(defaultWord);
+	const handleResponse = useCallback(
+		(res) => {
+			onSearch(res.data);
+		},
+		[onSearch]
+	);
+
+	const handleImages = useCallback(
+		(res) => {
+			onQuery(res.data.photos);
+		},
+		[onQuery]
+	);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -38,14 +51,6 @@ export default function Form({
 
 		fetchData();
 	}, [defaultWord, setWordExists, handleResponse, handleImages]);
-
-	const handleResponse = (data) => {
-		onSearch(data);
-	};
-
-	const handleImages = (photos) => {
-		onQuery(photos);
-	};
 
 	const search = async (event) => {
 		event.preventDefault();
