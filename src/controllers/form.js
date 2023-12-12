@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/form.css';
 
+require('dotenv').config({ path: '.env' });
+
 const apiKey = process.env.REACT_APP_API_KEY;
 const pexelsKey = process.env.REACT_APP_PEXELS_KEY;
 export default function Form({ defaultWord, onSearch, onQuery }) {
