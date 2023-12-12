@@ -5,9 +5,13 @@ import '../css/form.css';
 const apiKey = process.env.REACT_APP_API_KEY;
 const pexelsKey = process.env.REACT_APP_PEXELS_KEY;
 
-export default function Form({ defaultWord, onSearch, onQuery }) {
+export default function Form({
+	defaultWord,
+	onSearch,
+	onQuery,
+	setWordExists,
+}) {
 	const [keyword, setKeyword] = useState(defaultWord);
-	const [wordExists, setWordExists] = useState(true);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -17,10 +21,8 @@ export default function Form({ defaultWord, onSearch, onQuery }) {
 				const responseData = dictionaryResponse.data;
 
 				if (responseData.error) {
-					// Word does not exist
 					setWordExists(false);
 				} else {
-					// Word exists
 					setWordExists(true);
 					handleResponse(responseData);
 					const pexelsUrl = `https://api.pexels.com/v1/search?query=${defaultWord}`;
@@ -53,10 +55,8 @@ export default function Form({ defaultWord, onSearch, onQuery }) {
 			const responseData = dictionaryResponse.data;
 
 			if (responseData.error) {
-				// Word does not exist
 				setWordExists(false);
 			} else {
-				// Word exists
 				setWordExists(true);
 				handleResponse(responseData);
 				const pexelsUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=8`;
@@ -89,11 +89,6 @@ export default function Form({ defaultWord, onSearch, onQuery }) {
 					className='btn btn-outline-secondary col-4'
 				/>
 			</form>
-			{!wordExists && (
-				<p className='error-message'>
-					Word not found. Please try another word.
-				</p>
-			)}
 		</div>
 	);
 }

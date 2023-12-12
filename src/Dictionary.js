@@ -7,6 +7,8 @@ import './css/dictionary.css';
 export default function Dictionary() {
 	let [results, setResults] = useState(null);
 	let [images, setImages] = useState(null);
+	const [wordExists, setWordExists] = useState(true);
+
 	return (
 		<div className='Dictionary container-fluid'>
 			<div className='container p-3'>
@@ -14,8 +16,9 @@ export default function Dictionary() {
 					defaultWord='shenanigans'
 					onSearch={setResults}
 					onQuery={setImages}
+					setWordExists={setWordExists}
 				/>
-				<Results results={results} />
+				<Results results={results} wordExists={wordExists} />
 			</div>
 			<div className='container p-3'>
 				<Images images={images} />

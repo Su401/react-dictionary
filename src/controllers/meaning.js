@@ -4,7 +4,7 @@ import '../css/meanings.css';
 
 export default function Meanings({ meaning }) {
 	if (!meaning) {
-		return null;
+		return 'Word not found. Please try another word.';
 	}
 
 	const { partOfSpeech, definition, example, synonyms } = meaning;
