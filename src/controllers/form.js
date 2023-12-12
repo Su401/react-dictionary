@@ -37,7 +37,7 @@ export default function Form({
 		};
 
 		fetchData();
-	}, [defaultWord]);
+	}, [defaultWord, setWordExists, handleResponse, handleImages]);
 
 	const handleResponse = (data) => {
 		onSearch(data);
