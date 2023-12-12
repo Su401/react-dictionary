@@ -1,83 +1,49 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/form.css';
 
-const apiKey = process.env.REACT_APP_API_KEY;
-const pexelsKey = process.env.REACT_APP_PEXELS_KEY;
+export default function Form({ defaultWord, onSearch, onQuery }) {
+	let [keyword, setKeyword] = useState(defaultWord);
+	let apiKey = '5d4be4co359dcfb3b02ea04bt4fdc01e';
+	let pexelsKey = 'z6DCVBafORQ0Apsrh7qOwheZHJDt7MZZZ4I7XbHpKtfqHibE2ouZgTOb';
 
-export default function Form({
-	defaultWord,
-	onSearch,
-	onQuery,
-	setWordExists,
-}) {
-	const [keyword, setKeyword] = useState(defaultWord);
-	const handleResponse = useCallback(
-		(res) => {
-			onSearch(res.data);
-		},
-		[onSearch]
-	);
+	function handleResponse(res) {
+		onSearch(res.data);
+	}
 
-	const handleImages = useCallback(
-		(res) => {
-			onQuery(res.data.photos);
-		},
-		[onQuery]
-	);
+	function handleImages(res) {
+		onQuery(res.data.photos);
+	}
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const dictionaryUrl = `https://api.shecodes.io/dictionary/v1/define?word=${defaultWord}&key=${apiKey}`;
-				const dictionaryResponse = await axios.get(dictionaryUrl);
-				const responseData = dictionaryResponse.data;
-
-				if (responseData.error) {
-					setWordExists(false);
-				} else {
-					setWordExists(true);
-					handleResponse(responseData);
-					const pexelsUrl = `https://api.pexels.com/v1/search?query=${defaultWord}`;
-					const pexelsResponse = await axios.get(pexelsUrl, {
-						headers: { Authorization: `${pexelsKey}` },
-					});
-					handleImages(pexelsResponse.data.photos);
-				}
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		};
-
-		fetchData();
-	}, [defaultWord, setWordExists, handleResponse, handleImages]);
-
-	const search = async (event) => {
-		event.preventDefault();
-		try {
-			const dictionaryUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
-			const dictionaryResponse = await axios.get(dictionaryUrl);
-			const responseData = dictionaryResponse.data;
-
-			if (responseData.error) {
-				setWordExists(false);
-			} else {
-				setWordExists(true);
-				handleResponse(responseData);
-				const pexelsUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=8`;
-				const pexelsResponse = await axios.get(pexelsUrl, {
+	useState(
+		() => {
+			let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${defaultWord}&key=${apiKey}`;
+			axios.get(apiUrl).then(handleResponse);
+			let pexelsUrl = `https://api.pexels.com/v1/search?query=${defaultWord}`;
+			axios
+				.get(pexelsUrl, {
 					headers: { Authorization: `${pexelsKey}` },
-				});
-				handleImages(pexelsResponse.data.photos);
-			}
-		} catch (error) {
-			console.error('Error searching:', error);
-		}
-	};
+				})
+				.then(handleImages);
+		},
+		{ defaultWord }
+	);
 
-	const handleKeyword = (event) => {
+	function search(event) {
+		event.preventDefault();
+		let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${keyword}&key=${apiKey}`;
+		axios.get(apiUrl).then(handleResponse);
+		let pexelsUrl = `https://api.pexels.com/v1/search?query=${keyword}&per_page=8`;
+		axios
+			.get(pexelsUrl, {
+				headers: { Authorization: `${pexelsKey}` },
+			})
+			.then(handleImages);
+	}
+
+	function handleKeyword(event) {
 		setKeyword(event.target.value);
-	};
+	}
 
 	return (
 		<div className='Form'>
@@ -86,12 +52,12 @@ export default function Form({
 					type='search'
 					placeholder='Search for a word...'
 					onChange={handleKeyword}
-					className='btn btn-secondary col-8'
+					class='btn btn-secondary col-8'
 				/>
 				<input
 					type='submit'
 					value='Search'
-					className='btn btn-outline-secondary col-4'
+					class='btn btn-outline-secondary col-4'
 				/>
 			</form>
 		</div>
